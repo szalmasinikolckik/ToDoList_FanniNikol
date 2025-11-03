@@ -7,13 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="todo-container">
-    <h1>To-Do List</h1>
-    <h2>Leírás:</h2>
-    <input type="text" id="taskInput" placeholder="Pl.: Porszívózás" />
-    <button onclick="addTask()">Rögzítés</button>
-    <ul id="taskList"></ul>
+    <div id="todo-container">
+        <div id="todo-header">
+            <h1>To-Do List</h1>
+        </div>
+        <div id="todo-form">
+            <h2>Leírás:</h2>
+            <input type="text" id="taskInput" placeholder="Pl.: Porszívózás" />
+            <button onclick="addTask()">Rögzítés</button>
+        </div>
+        <div id="todo-ul">
+            <ul id="taskList"></ul>
+        </div>
     </div>
+    
 
 
     <script src="script.js"></script>
