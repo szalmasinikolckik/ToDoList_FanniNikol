@@ -65,8 +65,38 @@ input.addEventListener("keydown", (event) => {
 
 
 
+function selectTask() {
+    let selectedLi;
+
+    ul.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+
+    let li = e.target;
+    if (li.tagName.toLowerCase() === "span")
+    {
+        li = li.parentElement;
+    } 
+        
+
+    let items = ul.querySelectorAll("li");
+    for (let i = 0; i < items.length; i++)
+    {
+        items[i].style.backgroundColor = "";
+    } 
+
+    selectedLi = li;
+    selectedLi.style.backgroundColor = "lightpink";
+    
+});
+}
+
+
+// function swapTask() {
+    
+// }
 
 loadTask();
+selectTask();
 
 //+ otletek ha esetleg kesz lennenk: searchTask(), deleteallTaskbutton
 
