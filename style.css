@@ -20,6 +20,18 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     padding: 15px;
+    max-width: 400px
+}
+
+h1 {
+    text-align: center;
+}
+
+
+#todo-container {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
     max-width: 400px;
     background-color: #231709;
     color: white;
@@ -67,3 +79,4 @@ li {
 ul {
     padding-top: 15px;
 }
+
