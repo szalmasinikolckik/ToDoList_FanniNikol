@@ -57,5 +57,16 @@ function loadTask() {
     
 }
 
+input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        addTask();
+    }
+});
+
+
+
+
 loadTask();
+
+//+ otletek ha esetleg kesz lennenk: searchTask(), deleteallTaskbutton
 
