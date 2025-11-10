@@ -27,31 +27,33 @@ function addTask() {
 
 }
 
+
+
 function deleteTask(deleteBtn, li){
     deleteBtn.addEventListener("click", () => 
-    {
-        li.remove();
-        saveTask()
-    });
-}
-
-function saveTask() {
-    let tasks = [];
-    const span = ul.querySelectorAll("span");
-
-    for (let i = 0; i < span.length; i++) {
-        tasks.push(span[i].innerText)
+        {
+            li.remove();
+            saveTask()
+        });
     }
     
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-
+    function saveTask() {
+        let tasks = [];
+        const span = ul.querySelectorAll("span");
+        
+        for (let i = 0; i < span.length; i++) {
+            tasks.push(span[i].innerText)
+        }
+        
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+    
 function loadTask() {
     const savedTasks = JSON.parse(localStorage.getItem("tasks")); 
     for (let i = 0; i < savedTasks.length; i++) {
         input.value = savedTasks[i];
         addTask();
-
+        
     }
     
 }
