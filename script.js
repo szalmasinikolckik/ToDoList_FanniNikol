@@ -13,27 +13,27 @@ function addTask() {
     if(input.value){
         const li = document.createElement("li");
 
-        
+        const div = document.createElement("div");
+        div.id = "taskContent"; 
+
         const checkBtn = document.createElement("input");
         checkBtn.setAttribute("type", "checkbox");
-        li.appendChild(checkBtn)
+        div.appendChild(checkBtn);
         
         const span = document.createElement("span");
         span.innerText = input.value;
-        li.appendChild(span);
+        div.appendChild(span);
         
+        li.appendChild(div);
+
         const deleteBtn = document.createElement("button");
         deleteBtn.innerText = "Törlés";
         li.appendChild(deleteBtn);
         
         ul.appendChild(li);
+
         deleteTask(deleteBtn, li);
 
-        const div = input.createElement("div");
-        div.setAttribute("id", "cssdiv")
-        div.appendChild(span);
-        div.appendChild(input);
-        
         input.value = "";
         saveTask()
     }
@@ -108,9 +108,9 @@ function selectTask() {
 }
 
 
-// function swapTask() {
+function swapTask() {
     
-// }
+}
 
 loadTask();
 selectTask();

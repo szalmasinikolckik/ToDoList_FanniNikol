@@ -53,6 +53,7 @@ input[type=text]{
 }
 
 
+
 button {
     border-radius: 5px;
     padding: 5px;
@@ -91,6 +92,18 @@ li {
     padding: 5px 10px;     
     margin: 10px 0px;
     
+}
+
+#taskContent {
+    /* height: 200px; */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+input[type=checkbox] {
+    margin-top: 2px;
 }
 
 ul {
