@@ -95,11 +95,11 @@ li {
 }
 
 #taskContent {
-    /* height: 200px; */
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
 
 
 input[type=checkbox] {

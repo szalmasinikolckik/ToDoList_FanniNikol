@@ -108,6 +108,10 @@ function selectTask() {
 }
 
 
+function completeTask() {
+    
+}
+
 function swapTask() {
     
 }
