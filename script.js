@@ -2,7 +2,14 @@ const input = document.getElementById("taskInput");
 const ul = document.querySelector("#taskList");
 
 function addTask() {
-
+    if (!input.value.trim()) {
+        alert("Kérlek írj valami teendőt!");
+        return;
+    }
+    if (!isNaN(input.value)) {
+        alert("A megadott érték nem lehet szám!");
+        return;
+    }
     if(input.value){
         const li = document.createElement("li");
     

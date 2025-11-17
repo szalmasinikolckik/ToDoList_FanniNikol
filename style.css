@@ -40,6 +40,7 @@ h1 {
 
 h1 {
     text-align: center;
+    padding-bottom: 10px;
 }
 
 input[type=text]{
@@ -56,8 +57,7 @@ button {
 }
 
 button:hover {
-    width: 2000px;
-    background-color: #231709;
+    background-color: rgb(218, 145, 157);
  }
 
 
@@ -83,6 +83,7 @@ li {
     background-color: white;
     border: 2px solid pink;
     padding: 5px 10px;     
+    margin: 10px 0px;
     
 }
 
