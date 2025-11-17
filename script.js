@@ -12,18 +12,28 @@ function addTask() {
     }
     if(input.value){
         const li = document.createElement("li");
-    
 
+        
+        const checkBtn = document.createElement("input");
+        checkBtn.setAttribute("type", "checkbox");
+        li.appendChild(checkBtn)
+        
         const span = document.createElement("span");
         span.innerText = input.value;
         li.appendChild(span);
-
+        
         const deleteBtn = document.createElement("button");
         deleteBtn.innerText = "Törlés";
         li.appendChild(deleteBtn);
+        
         ul.appendChild(li);
         deleteTask(deleteBtn, li);
 
+        const div = input.createElement("div");
+        div.setAttribute("id", "cssdiv")
+        div.appendChild(span);
+        div.appendChild(input);
+        
         input.value = "";
         saveTask()
     }

@@ -38,6 +38,11 @@ h1 {
     border: 2px solid pink;
 }
 
+#cssdiv {
+    display: flex;
+    justify-content: left;
+}
+
 h1 {
     text-align: center;
     padding-bottom: 10px;
@@ -46,6 +51,7 @@ h1 {
 input[type=text]{
    color: #231709;
 }
+
 
 button {
     border-radius: 5px;
