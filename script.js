@@ -37,34 +37,32 @@ function addTask() {
         input.value = "";
         saveTask()
     }
-
-    else{
-        alert("Kérlek írj valami teendőt!")
-    }
-
 }
 
 
 
 function deleteTask(deleteBtn, li){
     deleteBtn.addEventListener("click", () => 
-        {
-            li.remove();
-            saveTask()
-        });
-    }
+    {
+        li.remove();
+        saveTask()
+    });
+}
+   
     
-    function saveTask() {
-        let tasks = [];
-        const span = ul.querySelectorAll("span");
+
+function saveTask() {
+    let tasks = [];
+    const span = ul.querySelectorAll("span");
         
-        for (let i = 0; i < span.length; i++) {
-            tasks.push(span[i].innerText)
-        }
-        
-        localStorage.setItem("tasks", JSON.stringify(tasks));
+    for (let i = 0; i < span.length; i++) {
+        tasks.push(span[i].innerText)
     }
-    
+        
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+   
+
 function loadTask() {
     const savedTasks = JSON.parse(localStorage.getItem("tasks")); 
     for (let i = 0; i < savedTasks.length; i++) {
@@ -88,16 +86,10 @@ function selectTask() {
     let selectedLi;
 
     ul.addEventListener("click", function(e) {
-    e.preventDefault();
-
-    let li = e.target;
-    if (li.tagName.toLowerCase() === "span")
-    {
-        li = li.parentElement;
-    } 
-        
-
+    let li = e.target.closest("li");
+ 
     let items = ul.querySelectorAll("li");
+
     for (let i = 0; i < items.length; i++)
     {
         items[i].style.backgroundColor = "";
@@ -115,11 +107,40 @@ function completeTask() {
 }
 
 function swapTask() {
-    
+    document.addEventListener("keydown", function(e) {
+        
+        let selectedIndex = -1;
+        const items = ul.querySelectorAll("li");
+        
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].style.backgroundColor === "lightpink") {
+                selectedIndex = i;
+            }
+        }
+        
+        if (selectedIndex === -1) return;
+        
+        if (e.key === "ArrowUp") {
+
+            const selectedItem = items[selectedIndex];
+            const prevItem = items[selectedIndex - 1];
+            ul.insertBefore(selectedItem, prevItem);
+            saveTask();
+        }
+
+        else if (e.key === "ArrowDown") {
+            
+            const selectedItem = items[selectedIndex];
+            const nextItem = items[selectedIndex + 1];
+            ul.insertBefore(nextItem, selectedItem);
+            saveTask();
+        }
+    });
 }
+
 
 loadTask();
 selectTask();
+swapTask();
 
-//+ otletek ha esetleg kesz lennenk: searchTask(), deleteallTaskbutton
 
