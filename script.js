@@ -2,19 +2,36 @@ const input = document.getElementById("taskInput");
 const ul = document.querySelector("#taskList");
 
 function addTask() {
-
+    if (!input.value.trim()) {
+        alert("Kérlek írj valami teendőt!");
+        return;
+    }
+    if (!isNaN(input.value)) {
+        alert("A megadott érték nem lehet szám!");
+        return;
+    }
     if(input.value){
         const li = document.createElement("li");
-    
 
+        const div = document.createElement("div");
+        div.id = "taskContent"; 
+
+        const checkBtn = document.createElement("input");
+        checkBtn.setAttribute("type", "checkbox");
+        div.appendChild(checkBtn);
+        
         const span = document.createElement("span");
         span.innerText = input.value;
-        li.appendChild(span);
+        div.appendChild(span);
+        
+        li.appendChild(div);
 
         const deleteBtn = document.createElement("button");
         deleteBtn.innerText = "Törlés";
         li.appendChild(deleteBtn);
+        
         ul.appendChild(li);
+
         deleteTask(deleteBtn, li);
 
         input.value = "";
@@ -93,9 +110,13 @@ function selectTask() {
 }
 
 
-// function swapTask() {
+function completeTask() {
     
-// }
+}
+
+function swapTask() {
+    
+}
 
 loadTask();
 selectTask();
