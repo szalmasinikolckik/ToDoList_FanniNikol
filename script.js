@@ -70,7 +70,7 @@ input.addEventListener("keydown", (event) => {
 function selectTask() {
     let selectedLi;
 
-    ul.addEventListener("contextmenu", function(e) {
+    ul.addEventListener("click", function(e) {
     e.preventDefault();
 
     let li = e.target;
