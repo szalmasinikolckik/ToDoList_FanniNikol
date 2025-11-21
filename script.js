@@ -52,26 +52,67 @@ function deleteTask(deleteBtn, li){
     
 
 function saveTask() {
-    let tasks = [];
-    const span = ul.querySelectorAll("span");
+    // let tasks = [];
+    // const items = ul.querySelectorAll("li");    
+    // for (let i = 0; i < items.length; i++) {
+    //     const span = items[i].querySelector("span");
+    //     const checkbox = items[i].querySelector("input[type='checkbox']");
+    //     tasks.push({
+    //         text: span.innerText,
+    //         checked: checkbox.checked
+    //     });
+    // }
         
-    for (let i = 0; i < span.length; i++) {
-        tasks.push(span[i].innerText)
+    // localStorage.setItem("tasks", JSON.stringify(tasks)); //OBJECTES
+    let taskTexts = [];
+    let taskChecks = [];
+    const items = ul.querySelectorAll("li");
+    for (let i = 0; i < items.length; i++) {
+        const span = items[i].querySelector("span");
+        const checkbox = items[i].querySelector("input[type='checkbox']");
+        taskTexts.push(span.innerText);
+        taskChecks.push(checkbox.checked);
     }
-        
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("taskTexts", JSON.stringify(taskTexts));
+    localStorage.setItem("taskChecks", JSON.stringify(taskChecks)); //2 tombos
 }
    
 
 function loadTask() {
-    const savedTasks = JSON.parse(localStorage.getItem("tasks")); 
-    for (let i = 0; i < savedTasks.length; i++) {
-        input.value = savedTasks[i];
-        addTask();
+    // const savedTasks = JSON.parse(localStorage.getItem("tasks")); 
+    // for (let i = 0; i < savedTasks.length; i++) {
+    //     input.value = savedTasks[i];
+    //     addTask();
         
+    // }
+    const savedTexts = JSON.parse(localStorage.getItem("taskTexts"));
+    const savedChecks = JSON.parse(localStorage.getItem("taskChecks"));
+    for (let i = 0; i < savedTexts.length; i++) {
+
+        const li = document.createElement("li");
+        const div = document.createElement("div");
+        div.id = "taskContent";
+
+        const checkBtn = document.createElement("input");
+        checkBtn.type = "checkbox";
+        checkBtn.checked = savedChecks[i];
+        checkBtn.addEventListener("change", saveTask);
+
+        const span = document.createElement("span");
+        span.innerText = savedTexts[i];
+
+        div.appendChild(checkBtn);
+        div.appendChild(span);
+        li.appendChild(div);
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.innerText = "Törlés";
+        li.appendChild(deleteBtn);
+
+        ul.appendChild(li);
+        
+
     }
-    
-    
 }
 
 input.addEventListener("keydown", (event) => {
@@ -83,28 +124,25 @@ input.addEventListener("keydown", (event) => {
 
 
 function selectTask() {
-    let selectedLi;
+   ul.addEventListener("click", function(e) {
+        let li = e.target.closest("li");
+        if (!li) return;
 
-    ul.addEventListener("click", function(e) {
-    let li = e.target.closest("li");
- 
-    let items = ul.querySelectorAll("li");
+        const items = ul.querySelectorAll("li");
 
-    for (let i = 0; i < items.length; i++)
-    {
-        items[i].style.backgroundColor = "";
-    } 
+        if (li.classList.contains("selected")) {
+            li.classList.remove("selected");
+            return;
+        }
 
-    selectedLi = li;
-    selectedLi.style.backgroundColor = "lightpink";
-    
-});
+        for (let i = 0; i < items.length; i++) {
+            items[i].classList.remove("selected");
+        }
+
+        li.classList.add("selected");
+    });
 }
 
-
-function completeTask() {
-    
-}
 
 function swapTask() {
     document.addEventListener("keydown", function(e) {
@@ -113,15 +151,14 @@ function swapTask() {
         const items = ul.querySelectorAll("li");
         
         for (let i = 0; i < items.length; i++) {
-            if (items[i].style.backgroundColor === "lightpink") {
+            if (items[i].classList.contains("selected")) {
                 selectedIndex = i;
             }
         }
-        
         if (selectedIndex === -1) return;
-        
-        if (e.key === "ArrowUp") {
 
+        if (e.key === "ArrowUp") {
+            if (selectedIndex === 0) return;  
             const selectedItem = items[selectedIndex];
             const prevItem = items[selectedIndex - 1];
             ul.insertBefore(selectedItem, prevItem);
@@ -129,7 +166,6 @@ function swapTask() {
         }
 
         else if (e.key === "ArrowDown") {
-            
             const selectedItem = items[selectedIndex];
             const nextItem = items[selectedIndex + 1];
             ul.insertBefore(nextItem, selectedItem);

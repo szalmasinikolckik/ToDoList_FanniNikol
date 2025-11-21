@@ -109,4 +109,9 @@ input[type=checkbox] {
 ul {
     padding-top: 15px;
 }
+.selected {
+    background-color: #ff99aa;
+}
+
+
 
